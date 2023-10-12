@@ -56,6 +56,7 @@ public class JefeFinal : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
             Instantiate(prefabProyectil, puntoSpawnProyectil.position, Quaternion.identity);
+
         }
     }
 
