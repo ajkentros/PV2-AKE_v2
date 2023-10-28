@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainUIController : MonoBehaviour
 {
+    // carga la escena la escena siguiente usando el Singleton ApplicationManager
     public void CargarSiguienteEscena()
     {
-        int indiceEscenaActual = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(indiceEscenaActual + 1);
+        ApplicationManager.Instance.GoToNextScene();
     }
 }
