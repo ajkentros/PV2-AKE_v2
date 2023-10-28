@@ -18,20 +18,29 @@ public class Jugador : MonoBehaviour
     [SerializeField]
     private UnityEvent<string> OnTextChanged;
 
-    //invoca al evento OnLiveChanged:toma las vidas del jugador
-    //invoca al evento OnTextChanged:muestra las vidas del jugador en la UI
     private void Start()
     {
+        /*
+         * invoca al evento OnLiveChanged:toma las vidas del jugador
+         * invoca al evento OnTextChanged:muestra las vidas del jugador en la UI
+        */
         OnLivesChanged.Invoke(perfilJugador.Vida);
-        OnTextChanged.Invoke(perfilJugador.Vida.ToString());
+        OnTextChanged.Invoke(GameManager.Instance.GetScore().ToString());
     }
 
     //modifica la vida del Player
-    //invoca al evento OnTextChanged:muestra las vidas del jugador en la UI
     public void ModificarVida(int puntos)
     {
+        /*
+        suma vida = puntos al perfil (scriptableObject) del jugador
+        adiciona los puntos*100 al GameManager
+        invoca al evento OnTextChanged:muestra las vidas del jugador en la UI
+        invoca al evento OnLivesChanged: cambia la vida del jugadoren el perfilJugador
+        muestra en consola
+        */
         perfilJugador.Vida += puntos;
-        OnTextChanged.Invoke(perfilJugador.Vida.ToString());
+        GameManager.Instance.AddScore(puntos * 100);
+        OnTextChanged.Invoke(GameManager.Instance.GetScore().ToString());
         OnLivesChanged.Invoke(perfilJugador.Vida);
         Debug.Log(EstasVivo());
     }

@@ -67,7 +67,7 @@ public class JefeFinal : MonoBehaviour
         float velocidadEmbestida = -10f; // Ajusta la velocidad de la embestida según tus necesidades
 
         Vector2 posicionInicial = transform.position;
-        Vector2 posicionObjetivo = new Vector2(transform.position.x + velocidadEmbestida, transform.position.y);
+        Vector2 posicionObjetivo = new(transform.position.x + velocidadEmbestida, transform.position.y);
 
         // Mover hacia adelante
         while (Time.time < tiempoInicio + tiempoEmbestida / 2)
@@ -91,7 +91,7 @@ public class JefeFinal : MonoBehaviour
         float velocidadMovimiento = 6f;
 
         Vector2 posicionInicial = transform.position;
-        Vector2 posicionObjetivo = new Vector2(transform.position.x, transform.position.y + velocidadMovimiento);
+        Vector2 posicionObjetivo = new(transform.position.x, transform.position.y + velocidadMovimiento);
 
         // Mover hacia la posición objetivo
         while (Time.time < tiempoInicio + tiempoMovimiento / 2)

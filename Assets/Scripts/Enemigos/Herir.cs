@@ -6,7 +6,7 @@ public class Herir : MonoBehaviour
 {
     // Variables a configurar desde el editor
     [Header("Configuracion")]
-    [SerializeField] int puntos = 1;
+    [SerializeField] int puntos = 5;
 
     //verifica colisión con el Player
     private void OnCollisionEnter2D(Collision2D collision)
@@ -18,7 +18,9 @@ public class Herir : MonoBehaviour
             //PlayerController jugadorTipo2 = collision.gameObject.GetComponent<PlayerController>();
             jugador.ModificarVida(-puntos);
             //jugadorTipo2.ModificarVida(-puntos);
+            //Destroy(gameObject);
             Debug.Log(" PUNTOS DE DAÑO REALIZADOS AL JUGADOR " + puntos);
+            gameObject.SetActive(false);
         }
     }
 }

@@ -2,15 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime;
 
 public class HUDController : MonoBehaviour
 {
     // inicializa texto en UI
     [SerializeField] TextMeshProUGUI miTexto;
+    
     // inicializa GameObject ícono de vida
     [SerializeField] GameObject iconoVida;
+    
     // inicializa GameObject contenedor de iconos de vida
     [SerializeField] GameObject contenedorIconosVida;
+
+
+    // suscribe a evento
+    private void OnEnable()
+    {
+        // asocia suscribiendo (=) al evento OnPause con el método Pausar
+        // asocia suscribiendo (=) al evento OnResume con el método Reanudar
+        GameEvents.OnPause += Pausar;
+        GameEvents.OnResume += Reanudar;
+    }
+
+    // desuscribe a evento
+    private void OnDisable()
+    {
+        // asocia desuscribiendo (-=) al evento OnPause con el método Pausar
+        // asocia desuscribiendo (-=) al evento OnResume con el método Reanudar
+        GameEvents.OnPause -= Pausar;
+        GameEvents.OnResume -= Reanudar;
+    }
+
+    // pausa el juego y actualiza el texto
+    private void Pausar()
+    {
+        ActualizarTextoHUD("PAUSADO");
+    }
+
+    // reanuda el juego y actualiza el texto
+    private void Reanudar()
+    {
+        ActualizarTextoHUD(GameManager.Instance.GetScore().ToString());
+    }
+
 
     // Actualiza el texto en UI
     public void ActualizarTextoHUD(string nuevoTexto)
