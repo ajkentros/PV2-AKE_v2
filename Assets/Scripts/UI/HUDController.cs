@@ -15,6 +15,9 @@ public class HUDController : MonoBehaviour
     // inicializa GameObject contenedor de iconos de vida
     [SerializeField] GameObject contenedorIconosVida;
 
+    // inicializa GameObject menu
+    [SerializeField] GameObject menuConfig;
+
 
     // suscribe a evento
     private void OnEnable()
@@ -34,16 +37,18 @@ public class HUDController : MonoBehaviour
         GameEvents.OnResume -= Reanudar;
     }
 
-    // pausa el juego y actualiza el texto
+    // pausa el juego, actualiza el texto y el menú
     private void Pausar()
     {
         ActualizarTextoHUD("PAUSADO");
+        menuConfig.SetActive(true);
     }
 
-    // reanuda el juego y actualiza el texto
+    // reanuda el juego, actualiza el texto y el menú
     private void Reanudar()
     {
         ActualizarTextoHUD(GameManager.Instance.GetScore().ToString());
+        menuConfig.SetActive(false);
     }
 
 

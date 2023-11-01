@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Jugador : MonoBehaviour
+public class Jugador : MonoBehaviour, IDamageable
 {
     // variable perfilJugador del Tipo PerfilJugador, serializada y encapsulada
     [SerializeField]
@@ -57,5 +57,10 @@ public class Jugador : MonoBehaviour
         if (!collision.gameObject.CompareTag("Meta")) { return; }
 
         Debug.Log("GANASTE");
+    }
+
+    public void TakeDamage(int damage)
+    {
+        ModificarVida(damage);
     }
 }

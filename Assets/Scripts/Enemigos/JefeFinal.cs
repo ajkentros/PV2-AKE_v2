@@ -56,7 +56,7 @@ public class JefeFinal : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
             Instantiate(prefabProyectil, puntoSpawnProyectil.position, Quaternion.identity);
-
+                       
         }
     }
 
@@ -115,4 +115,5 @@ public class JefeFinal : MonoBehaviour
         // Puedes usar Random.Range para generar números aleatorios y decidir el siguiente estado
         estadoActual = Random.Range(0, 3);
     }
+
 }

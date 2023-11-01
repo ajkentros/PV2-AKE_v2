@@ -10,18 +10,17 @@ GameObject:
   m_Component:
   - component: {fileID: 7575664671947032612}
   - component: {fileID: 7411820523668129942}
-  - component: {fileID: 6106066165215889480}
-  - component: {fileID: 3661286847733002122}
   - component: {fileID: 8572648945692616826}
   - component: {fileID: -7632670028131907577}
   - component: {fileID: 6683569710180826290}
+  - component: {fileID: 6106066165215889480}
   m_Layer: 9
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7575664671947032612
 Transform:
   m_ObjectHideFlags: 0
@@ -89,33 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6106066165215889480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2178204821841836371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43b1a72d218d1bb4e9fa39558af5e1c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocidad: 7
-  damage: 2
---- !u!114 &3661286847733002122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2178204821841836371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6865c6c2876e0664e8c72804d41d9374, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  puntos: 5
 --- !u!96 &8572648945692616826
 TrailRenderer:
   serializedVersion: 3
@@ -300,3 +272,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &6106066165215889480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2178204821841836371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b1a72d218d1bb4e9fa39558af5e1c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidad: 7
+  timeOfLive: 13.6
+  damage: 2

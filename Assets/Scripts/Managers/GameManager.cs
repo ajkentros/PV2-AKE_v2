@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
          si la propiedad Instance = nulla (no se ha creado una instancia previamente) => 
             establece Instance en la instancia actual del objeto
             el objeto se mantiene a través de las transiciones de escena
-            score = 1000 (valor de inicial)
+            carga el score con el valor máximo del singleton PlayerPref = 0 (por si es negativo, inferior a 0)
          sino (ya existe una instancia de este objeto) =>
             se destruye el objeto actual para asegurarse de que solo haya una instancia en la escena en cualquier momento
         */
@@ -27,7 +27,8 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            score = 1000;
+            score = Mathf.Max(PlayerPrefs.GetInt("Puntaje"), 0);
+            //score = 100;
         }
         else
         {
@@ -98,11 +99,14 @@ public class GameManager : MonoBehaviour
         score += points;
 
         // solo para prueba de escenas
-        if(score <=0)
-        {
-            SceneManager.LoadScene(0);
-            ApplicationManager.Instance.GoToPreviousScene();
-        }
+        //if(score <=0)
+        //{
+        //    SceneManager.LoadScene(0);
+        //    ApplicationManager.Instance.GoToPreviousScene();
+        //}
+
+        if (score < 0) score = 0;
+        PlayerPrefs.SetInt("Puntaje", score);
     }
 
     // restaura el score
