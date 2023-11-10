@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 using Unity.VisualScripting.Antlr3.Runtime;
 
 public class HUDController : MonoBehaviour
 {
     // inicializa texto en UI
     [SerializeField] TextMeshProUGUI miTexto;
-    
+
+    // inicializa texto en UI
+    [SerializeField] TextMeshProUGUI miMensaje;
+
     // inicializa GameObject ícono de vida
     [SerializeField] GameObject iconoVida;
     
@@ -19,6 +23,8 @@ public class HUDController : MonoBehaviour
     [SerializeField] GameObject menuConfig;
 
 
+ 
+
     // suscribe a evento
     private void OnEnable()
     {
@@ -26,6 +32,11 @@ public class HUDController : MonoBehaviour
         // asocia suscribiendo (=) al evento OnResume con el método Reanudar
         GameEvents.OnPause += Pausar;
         GameEvents.OnResume += Reanudar;
+        
+        GameEvents.OnVictory += MostrarGanaste;
+        GameEvents.OnGameOver += MostrarPerdiste;
+
+
     }
 
     // desuscribe a evento
@@ -35,6 +46,10 @@ public class HUDController : MonoBehaviour
         // asocia desuscribiendo (-=) al evento OnResume con el método Reanudar
         GameEvents.OnPause -= Pausar;
         GameEvents.OnResume -= Reanudar;
+
+        GameEvents.OnVictory -= MostrarGanaste;
+        GameEvents.OnGameOver -= MostrarPerdiste;
+
     }
 
     // pausa el juego, actualiza el texto y el menú
@@ -119,5 +134,28 @@ public class HUDController : MonoBehaviour
     private void CrearIcono()
     {
         Instantiate(iconoVida, contenedorIconosVida.transform);
+    }
+
+    // muesra mensaje GANASTE o PERDISTE
+    public void MostrarMensaje(string mensaje)
+    {
+        miMensaje.text = mensaje;
+        // personalizar el mensaje de pantalla
+    }
+
+    private void MostrarGanaste()
+    {
+        
+        miMensaje.text = "GANASTE";
+        miMensaje.color = Color.green; // Puedes cambiar el color según tus preferencias
+        menuConfig.SetActive(true);
+    }
+
+    private void MostrarPerdiste()
+    {
+        
+        miMensaje.text = "PERDISTE";
+        miMensaje.color = Color.red; // Puedes cambiar el color según tus preferencias
+        menuConfig.SetActive(true);
     }
 }

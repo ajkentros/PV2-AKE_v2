@@ -26,6 +26,9 @@ public class MenuManager : MonoBehaviour
 
     private void OnEnable()
     {
-        PersistenceManager.Instance.SetInt(PersistenceManager.KeyScore, GameManager.Instance.GetScore());
+        if (PersistenceManager.Instance != null)
+        {
+            PersistenceManager.Instance.SetInt(PersistenceManager.KeyScore, GameManager.Instance.GetScore());
+        }
     }
 }

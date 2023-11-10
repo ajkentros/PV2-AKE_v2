@@ -14,6 +14,9 @@ public class PersistenceManager : MonoBehaviour
     public static string KeyUser { get => Instance.keyUser; }
     public static string KeyScore { get => Instance.keyScore; }
 
+   // [SerializeField] private AudioSource musicMenu;
+
+
 
     // define variables privadas del tipo string: keyMusic, keyVolume, keyUser, keyScore
     [SerializeField] private string keyMusic, keyVolume, keyUser, keyScore;
@@ -37,6 +40,9 @@ public class PersistenceManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        //musicMenu = GetComponent<AudioSource>();
+
     }
 
     // setea valores enteros

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Coleccionar : MonoBehaviour
 {
-    // Define variables del tipo lista (colelccionables), GameObjetc (bolsa), bool
+    // Define variables del tipo lista (colleccionables), GameObjetc (bolsa), bool
     [SerializeField] private List<GameObject> colleccionables;
     [SerializeField] private GameObject bolsa;
 

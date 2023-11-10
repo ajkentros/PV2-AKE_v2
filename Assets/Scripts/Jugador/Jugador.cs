@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Jugador : MonoBehaviour, IDamageable
 {
@@ -18,6 +19,11 @@ public class Jugador : MonoBehaviour, IDamageable
     [SerializeField]
     private UnityEvent<string> OnTextChanged;
 
+    // referencia al GameManager para luego acceder al evento victoria OnVictory
+    private GameManager gameManager;
+
+
+
     private void Start()
     {
         /*
@@ -26,7 +32,12 @@ public class Jugador : MonoBehaviour, IDamageable
         */
         OnLivesChanged.Invoke(perfilJugador.Vida);
         OnTextChanged.Invoke(GameManager.Instance.GetScore().ToString());
+
+        // obtiene la referencia al GameManager
+        gameManager = GameManager.Instance;
     }
+
+
 
     //modifica la vida del Player
     public void ModificarVida(int puntos)
@@ -42,7 +53,20 @@ public class Jugador : MonoBehaviour, IDamageable
         GameManager.Instance.AddScore(puntos * 100);
         OnTextChanged.Invoke(GameManager.Instance.GetScore().ToString());
         OnLivesChanged.Invoke(perfilJugador.Vida);
-        Debug.Log(EstasVivo());
+
+        if (!EstasVivo() || GameManager.Instance.GetScore() < 0)
+        {
+            
+            
+            // agregar lógica al perder el juego, cargar botón volver.
+            
+        }
+        else
+        {
+            Debug.Log(EstasVivo());
+        }
+
+
     }
 
     //devuelve true si quedan vidas en el Player
@@ -54,13 +78,38 @@ public class Jugador : MonoBehaviour, IDamageable
     //verifica trigger con la Meta
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        /*
+            si el jugador coliciona con la Meta =>
+                muestra mensaje en el HUD
+        */
+
         if (!collision.gameObject.CompareTag("Meta")) { return; }
 
         Debug.Log("GANASTE");
+
+
+        // Pausa el juego
+        GameEvents.TriggerVictory();
     }
 
     public void TakeDamage(int damage)
     {
         ModificarVida(damage);
+    }
+
+    private void Update()
+    {
+        // ...
+
+        if (!EstasVivo() || GameManager.Instance.GetScore() < 0)
+        {
+            
+            // Pausa el juego
+            GameEvents.TriggerGameOver();
+        }
+        else
+        {
+            Debug.Log(EstasVivo());
+        }
     }
 }

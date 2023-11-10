@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     // declara propiedad pública y estática Instance en la clase GameManager (get = obtener el valor de Instance, private set = la propia clase puede cambiar el valor de Instance).
     public static GameManager Instance { get; private set; }
+
+   
+
 
     // define variable entera score (score del juego)
     private int score;
@@ -43,6 +47,8 @@ public class GameManager : MonoBehaviour
         // asocia suscribiendo (=) al evento OnResume con el método Reanudar
         GameEvents.OnPause += Pausar;
         GameEvents.OnResume += Reanudar;
+        GameEvents.OnVictory += ManageOnVictory;
+        GameEvents.OnGameOver += ManageOnGameOver;
     }
 
     // desuscribe a evento
@@ -52,6 +58,8 @@ public class GameManager : MonoBehaviour
         // asocia desuscribiendo (-=) al evento OnResume con el método Reanudar
         GameEvents.OnPause -= Pausar;
         GameEvents.OnResume -= Reanudar;
+        GameEvents.OnVictory -= ManageOnVictory;
+        GameEvents.OnGameOver -= ManageOnGameOver;
     }
 
     // pausa el juego
@@ -105,8 +113,11 @@ public class GameManager : MonoBehaviour
         //    ApplicationManager.Instance.GoToPreviousScene();
         //}
 
+        //versión 1
         if (score < 0) score = 0;
         PlayerPrefs.SetInt("Puntaje", score);
+
+        
     }
 
     // restaura el score
@@ -119,5 +130,19 @@ public class GameManager : MonoBehaviour
     public int GetScore()
     {
         return score;
+    }
+
+    // manejaa la victoria
+    private void ManageOnVictory()
+    {
+        Time.timeScale = 0;
+        Debug.Log("VICTORIA");
+    }
+
+    // maneja la derrota
+    private void ManageOnGameOver()
+    {
+        Time.timeScale = 0;
+        Debug.Log("DERROTA");
     }
 }
