@@ -73,4 +73,12 @@ public class Saltar : MonoBehaviour
         miAudioSource.PlayOneShot(audioclip);
     }
 
+    // construye el Raycast cuando salta
+    private bool IsGrounded()
+    {
+        //
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
+        return hit.collider != null;
+    }
+
 }

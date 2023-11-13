@@ -20,7 +20,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] GameObject contenedorIconosVida;
 
     // inicializa GameObject menu
-    [SerializeField] GameObject menuConfig;
+    [SerializeField] GameObject menuConfig; //no hace falta, borrar
 
 
  
@@ -148,7 +148,7 @@ public class HUDController : MonoBehaviour
         
         miMensaje.text = "GANASTE";
         miMensaje.color = Color.green; // Puedes cambiar el color según tus preferencias
-        menuConfig.SetActive(true);
+       
     }
 
     private void MostrarPerdiste()
@@ -156,6 +156,6 @@ public class HUDController : MonoBehaviour
         
         miMensaje.text = "PERDISTE";
         miMensaje.color = Color.red; // Puedes cambiar el color según tus preferencias
-        menuConfig.SetActive(true);
+        
     }
 }
