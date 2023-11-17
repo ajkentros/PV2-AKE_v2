@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            score = Mathf.Max(PlayerPrefs.GetInt("Puntaje"), 0);
+            score = Mathf.Max(PlayerPrefs.GetInt("Puntaje"), 100);
             //score = 100;
         }
         else

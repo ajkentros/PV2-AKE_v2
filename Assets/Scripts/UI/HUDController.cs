@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using Unity.VisualScripting.Antlr3.Runtime;
+using UnityEngine.SceneManagement;
 
 public class HUDController : MonoBehaviour
 {
@@ -13,6 +15,9 @@ public class HUDController : MonoBehaviour
     // inicializa texto en UI
     [SerializeField] TextMeshProUGUI miMensaje;
 
+    // inicializa el botón Volver
+    [SerializeField] Button botonVolver;
+
     // inicializa GameObject ícono de vida
     [SerializeField] GameObject iconoVida;
     
@@ -20,7 +25,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] GameObject contenedorIconosVida;
 
     // inicializa GameObject menu
-    [SerializeField] GameObject menuConfig; //no hace falta, borrar
+    [SerializeField] GameObject menuConfig;
 
 
  
@@ -36,7 +41,8 @@ public class HUDController : MonoBehaviour
         GameEvents.OnVictory += MostrarGanaste;
         GameEvents.OnGameOver += MostrarPerdiste;
 
-
+        // suscribe el método al evento de clic del botón "Volver"
+        botonVolver.onClick.AddListener(VolverAPortada);
     }
 
     // desuscribe a evento
@@ -49,6 +55,9 @@ public class HUDController : MonoBehaviour
 
         GameEvents.OnVictory -= MostrarGanaste;
         GameEvents.OnGameOver -= MostrarPerdiste;
+
+        // desuscribe el método del evento de clic del botón "Volver"
+        botonVolver.onClick.RemoveListener(VolverAPortada);
 
     }
 
@@ -136,19 +145,15 @@ public class HUDController : MonoBehaviour
         Instantiate(iconoVida, contenedorIconosVida.transform);
     }
 
-    // muesra mensaje GANASTE o PERDISTE
-    public void MostrarMensaje(string mensaje)
-    {
-        miMensaje.text = mensaje;
-        // personalizar el mensaje de pantalla
-    }
-
     private void MostrarGanaste()
     {
         
         miMensaje.text = "GANASTE";
         miMensaje.color = Color.green; // Puedes cambiar el color según tus preferencias
-       
+
+        // activa el botón "Volver"
+        BotonVolver();
+
     }
 
     private void MostrarPerdiste()
@@ -156,6 +161,22 @@ public class HUDController : MonoBehaviour
         
         miMensaje.text = "PERDISTE";
         miMensaje.color = Color.red; // Puedes cambiar el color según tus preferencias
-        
+
+        // activa el botón "Volver"
+        BotonVolver();
+
+    }
+
+    // gestiona el botón Volver
+    private void BotonVolver()
+    {
+        botonVolver.gameObject.SetActive(true);
+    }
+
+    // gestiona el regreso a la portada
+    private void VolverAPortada()
+    {
+        // 
+        SceneManager.LoadScene("Portada");
     }
 }

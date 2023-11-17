@@ -20,7 +20,9 @@ public class Jugador : MonoBehaviour, IDamageable
     private UnityEvent<string> OnTextChanged;
 
     // referencia al GameManager para luego acceder al evento victoria OnVictory
+#pragma warning disable IDE0052 // Quitar miembros privados no leídos
     private GameManager gameManager;
+#pragma warning restore IDE0052 // Quitar miembros privados no leídos
 
 
 

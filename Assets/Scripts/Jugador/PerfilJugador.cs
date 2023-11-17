@@ -46,6 +46,32 @@ public class PerfilJugador : ScriptableObject
     private float fuerzaSalto = 5f;
     public float FuerzaSalto { get => fuerzaSalto; set => fuerzaSalto = value; }
 
+    // define el tiempo del coyote Time (ventaja en tiempo que tiene el jugador para el movimiento de salto)
+    [SerializeField]
+    private float coyoteConfig = 0.1f;
+    public float CoyoteConfig { get => coyoteConfig; set => coyoteConfig = value; }
+
+    // define la cantidad de saltos seguidos
+    [SerializeField]
+    private int maxJumpCount = 2;
+    public int MaxJumpCount { get => maxJumpCount; set => maxJumpCount = value; }
+
+    //define el incremento de la fuerza de salto
+    [SerializeField]
+    private float jumpForceIncreaseSpeed = 2f;
+    public float JumpForceIncreaseSpeed { get => jumpForceIncreaseSpeed; set => jumpForceIncreaseSpeed = value; }
+
+    // define la máxima fuerza de salto
+    [SerializeField]
+    private float maxJumpForce = 10f;
+    public float MaxJumpForce { get => maxJumpForce; set => maxJumpForce = value; }
+
+    // fuerza aplicada para el Raycast
+    [SerializeField]
+    private float auxForce = 5f;
+    public float AuxForce { get => auxForce; set => auxForce = value; }
+
+
     // variables de atributos serializadas y encapsuladas
     [Header("Configuraciones de Atributos")]
 
@@ -54,6 +80,9 @@ public class PerfilJugador : ScriptableObject
     [Range(5, 10)]
     private int vida = 5;
     public int Vida { get => vida; set => vida = value; }
+
+
+
 
     // variables SFX serializadas y encapsuladas
     [Header("Configuraciones SFX")]
