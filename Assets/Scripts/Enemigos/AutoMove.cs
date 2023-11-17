@@ -11,15 +11,15 @@ public class AutoMove : MonoBehaviour
 
     public int damage;
 
-    private float aliveTime = 0f;
+    private readonly float aliveTime = 0f;
 
     // Actualiza posición del proyectil que sale del Jefe
     void Update()
     {
-        transform.position += Vector3.left * velocidad * Time.deltaTime;
+        transform.position += Time.deltaTime * velocidad * Vector3.left;
 
         // Incrementa el tiempo de vida del proyectil
-        aliveTime += Time.deltaTime;
+        timeOfLive -= Time.deltaTime;
 
         // Si el tiempo de vida supera el valor deseado, destruye el proyectil
         if (aliveTime >= timeOfLive)
@@ -31,8 +31,8 @@ public class AutoMove : MonoBehaviour
     // 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        IDamageable damagableObjetc = collision.GetComponent<IDamageable>();
-        if(damagableObjetc != null )
+        //IDamageable damagableObjetc = collision.GetComponent<IDamageable>();
+        if (collision.TryGetComponent<IDamageable>(out var damagableObjetc))
         {
             damagableObjetc.TakeDamage(damage);
             Debug.Log("toco al player");

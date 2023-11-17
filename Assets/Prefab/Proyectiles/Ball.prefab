@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7575664671947032612
 Transform:
   m_ObjectHideFlags: 0
@@ -285,5 +285,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 7
-  timeOfLive: 13.6
+  timeOfLive: 3
   damage: 2

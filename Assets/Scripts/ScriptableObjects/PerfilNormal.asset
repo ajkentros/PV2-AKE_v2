@@ -15,7 +15,12 @@ MonoBehaviour:
   experienciaProximoNivel: 21
   escalarExperiencia: 0
   velocidad: 15
-  fuerzaSalto: 25
-  vida: 5
+  fuerzaSalto: 29.1
+  coyoteConfig: 0.1
+  maxJumpCount: 2
+  jumpForceIncreaseSpeed: 2
+  maxJumpForce: 10
+  auxForce: 9.554477
+  vida: 0
   jumpSFX: {fileID: 8300000, guid: 7f9d6f504b3135e4abd7430df91f875e, type: 3}
   collisionSFX: {fileID: 8300000, guid: 6d0feb26610db72418c502dc5180cfef, type: 3}
