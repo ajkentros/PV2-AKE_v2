@@ -20,9 +20,10 @@ public class Jugador : MonoBehaviour, IDamageable
     private UnityEvent<string> OnTextChanged;
 
     // referencia al GameManager para luego acceder al evento victoria OnVictory
-#pragma warning disable IDE0052 // Quitar miembros privados no leídos
-    private GameManager gameManager;
+
+    //private GameManager gameManager;
 #pragma warning restore IDE0052 // Quitar miembros privados no leídos
+
 
 
 
@@ -33,10 +34,11 @@ public class Jugador : MonoBehaviour, IDamageable
          * invoca al evento OnTextChanged:muestra las vidas del jugador en la UI
         */
         OnLivesChanged.Invoke(perfilJugador.Vida);
+        Debug.Log("Jugador.cs cantidad de VIDAS " + perfilJugador.Vida);
         OnTextChanged.Invoke(GameManager.Instance.GetScore().ToString());
 
         // obtiene la referencia al GameManager
-        gameManager = GameManager.Instance;
+        //gameManager = GameManager.Instance;
     }
 
 
@@ -55,19 +57,6 @@ public class Jugador : MonoBehaviour, IDamageable
         GameManager.Instance.AddScore(puntos * 100);
         OnTextChanged.Invoke(GameManager.Instance.GetScore().ToString());
         OnLivesChanged.Invoke(perfilJugador.Vida);
-
-        if (!EstasVivo() || GameManager.Instance.GetScore() < 0)
-        {
-            
-            
-            // agregar lógica al perder el juego, cargar botón volver.
-            
-        }
-        else
-        {
-            Debug.Log(EstasVivo());
-        }
-
 
     }
 
@@ -90,7 +79,7 @@ public class Jugador : MonoBehaviour, IDamageable
         Debug.Log("GANASTE");
 
 
-        // Pausa el juego
+        // llama al evento de victoria
         GameEvents.TriggerVictory();
     }
 
@@ -101,12 +90,12 @@ public class Jugador : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        // ...
+        // si el Jugador no estás vivo o el score (obtenido de game manager) < 0 =>
+        //      se llama al evento GameOver
+
 
         if (!EstasVivo() || GameManager.Instance.GetScore() < 0)
         {
-            
-            // Pausa el juego
             GameEvents.TriggerGameOver();
         }
         else

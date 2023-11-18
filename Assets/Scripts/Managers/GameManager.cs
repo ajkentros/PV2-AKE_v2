@@ -136,13 +136,15 @@ public class GameManager : MonoBehaviour
     private void ManageOnVictory()
     {
         Time.timeScale = 0;
+        ResetScore();
         Debug.Log("VICTORIA");
     }
 
     // maneja la derrota
     private void ManageOnGameOver()
     {
-        Time.timeScale = 0;
+        Time.timeScale = 0; 
+        ResetScore();
         Debug.Log("DERROTA");
     }
 }

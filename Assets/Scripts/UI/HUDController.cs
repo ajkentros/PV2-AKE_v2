@@ -90,9 +90,10 @@ public class HUDController : MonoBehaviour
         // nuestra en consola mensake
         // si el contenedor está vacío =>
         //  carga el contenedor y retorna
-        Debug.Log("ESTAS ACTUALIZANDO VIDAS");
+        
         if (EstaVacioContenedor())
         {
+            Debug.Log("HUDController.cs ESTAS ACTUALIZANDO VIDAS " + vidas);
             CargarContenedor(vidas);
             return;
         }
@@ -150,7 +151,7 @@ public class HUDController : MonoBehaviour
         
         miMensaje.text = "GANASTE";
         miMensaje.color = Color.green; // Puedes cambiar el color según tus preferencias
-
+      
         // activa el botón "Volver"
         BotonVolver();
 
